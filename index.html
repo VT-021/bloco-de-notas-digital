@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .anotacao {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .anotacao:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+        }
+        .anotacao h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        .anotacao p {
+            color: #718096;
+            font-size: 1rem;
+        }
+        .anotacao textarea {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            resize: vertical;
+            background-color: #edf2f7;
+            color: #718096;
+            transition: border-color 0.2s ease-in-out;
+            min-height: 100px;
+        }
+        .anotacao textarea:focus {
+            outline: none;
+            border-color: #90caf9;
+            box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.2);
+        }
+
+        .botao-salvar {
+            display: inline-flex;
+            align-items: center;
+            background-color: #48bb78;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            margin-top: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .botao-salvar:hover {
+            background-color: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .botao-salvar svg {
+            margin-right: 0.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        #anotacoes-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .materias-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .materia-card {
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background-color: #f7fafc; /* Cor de fundo padrão para os cards */
+            border: 1px solid #e2e8f0;
+        }
+
+        .materia-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+        }
+
+        .materia-card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #4a5568;
+        }
+
+        .materia-card ul {
+            list-style-position: inside;
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        .materia-card li{
+            margin-bottom: 0.25rem;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-4 text-center bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">Bloco de Notas Digital</h1>
+        <p class="text-gray-600 text-center mb-6">Crie e organize suas anotações de forma fácil e eficiente.</p>
+
+        <div class="materias-container">
+            <div class="materia-card">
+                <h2>Matemática</h2>
+                <ul>
+                    <li>Álgebra</li>
+                    <li>Geometria</li>
+                    <li>Cálculo</li>
+                    <li>Trigonometria</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>Física</h2>
+                <ul>
+                    <li>Mecânica</li>
+                    <li>Termodinâmica</li>
+                    <li>Eletromagnetismo</li>
+                    <li>Óptica</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>Química</h2>
+                <ul>
+                    <li>Química Geral</li>
+                    <li>Físico-Química</li>
+                    <li>Química Orgânica</li>
+                    <li>Química Inorgânica</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>Biologia</h2>
+                <ul>
+                    <li>Biologia Celular</li>
+                    <li>Genética</li>
+                    <li>Ecologia</li>
+                    <li>Evolução</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>História</h2>
+                <ul>
+                    <li>História Geral</li>
+                    <li>História do Brasil</li>
+                    <li>História Antiga</li>
+                    <li>História Contemporânea</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>Geografia</h2>
+                <ul>
+                    <li>Geografia Geral</li>
+                    <li>Geografia do Brasil</li>
+                    <li>Geografia Física</li>
+                    <li>Geografia Humana</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>Língua Portuguesa</h2>
+                <ul>
+                    <li>Gramática</li>
+                    <li>Literatura</li>
+                    <li>Redação</li>
+                    <li>Interpretação de Texto</li>
+                </ul>
+            </div>
+             <div class="materia-card">
+                <h2>Língua Inglesa</h2>
+                <ul>
+                    <li>Gramática</li>
+                    <li>Vocabulário</li>
+                    <li>Interpretação de Texto</li>
+                    <li>Conversação</li>
+                </ul>
+            </div>
+            <div class="materia-card">
+                <h2>Redação</h2>
+                <ul>
+                    <li>Dissertação</li>
+                    <li>Narração</li>
+                    <li>Descrição</li>
+                    <li>Argumentação</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="anotacao" id="nova-anotacao">
+            <h2>Nova Anotação</h2>
+            <textarea id="anotacao-texto" placeholder="Digite sua anotação aqui..."></textarea>
+            <button id="salvar-anotacao" class="botao-salvar">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.45a2.4 2.4 0 012.174-2.45H18.56a2.4 2.4 0 012.174 2.45L18 12m-6 6h.01M6 20h12a2 2 0 002-2V8a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Salvar Anotação
+            </button>
+        </div>
+
+        <div id="anotacoes-container">
+            </div>
+    </div>
+
+    <script>
+        const anotacaoTexto = document.getElementById('anotacao-texto');
+        const salvarAnotacaoBotao = document.getElementById('salvar-anotacao');
+        const anotacoesContainer = document.getElementById('anotacoes-container');
+
+        function carregarAnotacoes() {
+            const anotacoesSalvas = localStorage.getItem('anotacoes');
+            if (anotacoesSalvas) {
+                anotacoesContainer.innerHTML = anotacoesSalvas;
+            }
+        }
+
+        function salvarAnotacao() {
+            const novaAnotacaoTexto = anotacaoTexto.value.trim();
+
+            if (novaAnotacaoTexto !== '') {
+                const novaAnotacao = document.createElement('div');
+                novaAnotacao.className = 'anotacao';
+                novaAnotacao.innerHTML = `
+                    <h2>Anotação</h2>
+                    <p>${novaAnotacaoTexto}</p>
+                    <textarea>${novaAnotacaoTexto}</textarea>
+                `;
+
+                anotacoesContainer.appendChild(novaAnotacao);
+                anotacaoTexto.value = '';
+                localStorage.setItem('anotacoes', anotacoesContainer.innerHTML);
+            } else {
+                alert('Por favor, digite sua anotação antes de salvar.');
+            }
+        }
+
+        anotacoesContainer.addEventListener('input', function(event) {
+            const target = event.target;
+            if (target.tagName === 'TEXTAREA') {
+                const anotacaoDiv = target.closest('.anotacao');
+                if (anotacaoDiv) {
+                    const p = anotacaoDiv.querySelector('p');
+                    p.textContent = target.value;
+                    localStorage.setItem('anotacoes', anotacoesContainer.innerHTML);
+                }
+            }
+        });
+
+        salvarAnotacaoBotao.addEventListener('click', salvarAnotacao);
+
+        carregarAnotacoes();
+    </script>
+</body>
+</html>
